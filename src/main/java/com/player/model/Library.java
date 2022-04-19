@@ -41,6 +41,7 @@ public class Library {
 
         for(Book b : books) {
             b.setLibrary(this);
+
         }
     }
 }

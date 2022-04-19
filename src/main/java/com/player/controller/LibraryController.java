@@ -33,12 +33,13 @@ public class LibraryController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedLibrary.getId()).toUri();
 
+        System.out.println("---->savedLibrary "+savedLibrary);
         return ResponseEntity.created(location).body(savedLibrary);
     }
 
-    
-    
-    
+
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Library> update(@PathVariable Integer id, @RequestBody Library library) {
         Optional<Library> optionalLibrary = libraryRepository.findById(id);

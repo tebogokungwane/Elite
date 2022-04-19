@@ -39,6 +39,7 @@ public class BookController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedBook.getId()).toUri();
 
+        System.out.println("Library "+savedBook);
         return ResponseEntity.created(location).body(savedBook);
     }
 

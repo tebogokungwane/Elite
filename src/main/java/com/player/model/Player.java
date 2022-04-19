@@ -1,22 +1,15 @@
 package com.player.model;
 
-import lombok.*;
 import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 
-@Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Entity
 public class Player {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -42,26 +35,97 @@ public class Player {
 	@Column(name = "date_created")
     private Timestamp sqlTimestamp;
 
-	private double requiredAmount;
-	private  double totalAmount;
-	private double paidAmount;
-	private double outstandingAmount;
-	private double seasonRequiredAmount;
+	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+
+	private List <FinancialStatement> financialStatements;
 
 
-//	@OneToMany(mappedBy = "player",cascade = CascadeType.ALL)
-//	private List <FinancialStatement> financialStatements;
-//
-//	public List<FinancialStatement> getFinancialStatements() {
-//		return financialStatements;
-//	}
-//
-//	public void setFinancialStatements(List<FinancialStatement> financialStatements) {
-//		this.financialStatements = financialStatements;
-//
-//		for (FinancialStatement financialStatement : financialStatements) {
-//			financialStatement.setPlayer(this);
-//
-//		}
-//	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getSecretCode() {
+		return secretCode;
+	}
+
+	public void setSecretCode(String secretCode) {
+		this.secretCode = secretCode;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Timestamp getSqlTimestamp() {
+		return sqlTimestamp;
+	}
+
+	public void setSqlTimestamp(Timestamp sqlTimestamp) {
+		this.sqlTimestamp = sqlTimestamp;
+	}
+		public List<FinancialStatement> getFinancialStatements() {
+		return financialStatements;
+	}
+
+	public void setFinancialStatements(List<FinancialStatement> financialStatements) {
+		this.financialStatements = financialStatements;
+
+		for (FinancialStatement financialStatement : financialStatements) {
+			financialStatement.setPlayer(this);
+		}
+	}
+
 }
+
+
+
+
+
